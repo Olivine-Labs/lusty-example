@@ -1,0 +1,4 @@
+*_temp/
+logs/
+*.swo
+*.swp

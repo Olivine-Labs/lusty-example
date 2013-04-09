@@ -1,0 +1,3 @@
+[submodule "app/lusty"]
+	path = app/lusty
+	url = git@github.com:Olivine-Labs/lusty.git
