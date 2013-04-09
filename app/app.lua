@@ -9,7 +9,6 @@ local config = {
   log = {
     level = "debug"
   },
-  lazy = false,
   server = 'nginx',
   subscribers = {
     input = {
@@ -27,9 +26,7 @@ local config = {
   },
   publishers = {
     {"input"},
-    {"prerequest"},
     {"request"},
-    {"postrequest"},
     {"output"}
   },
   context = {
