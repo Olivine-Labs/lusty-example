@@ -3,38 +3,25 @@ package.path = './app/lusty/src/?.lua;'..package.path
 local Lusty = require 'init'
 
 local config = {
-  ["config.requests.root"] = {
-    file = 'config.handlers.root'
-  },
-  log = {
-    level = "debug"
-  },
-  server = 'nginx',
-  subscribers = {
-    input = {
-      'event.input.json'
+    server = require 'server.nginx',
+    subscribers = {
+      input = { 'event.input.json' },
+      request = {
+        { ['event.request.file'] = { file = 'handlers.root' } }
+      },
+      output = { 'event.output.json' },
+      log = { 'event.log.console' }
     },
-    request = {
-      {'event.request.file', 'config.requests.root'}
+    publishers = {
+      {"input"},
+      {"request"},
+      {"output"}
     },
-    output = {
-      'event.output.json'
-    },
-    log = {
-      'event.log.console'
+    context = {
+      'log',
+      'store'
     }
-  },
-  publishers = {
-    {"input"},
-    {"request"},
-    {"output"}
-  },
-  context = {
-    'options',
-    'log',
-    'store'
   }
-}
 
 lusty = Lusty(config)
 return lusty
