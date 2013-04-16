@@ -39,14 +39,16 @@ local config = {
 
     log = {
       -- log events should write to the console
-      { 'event.log.console' }
+      { 'event.log.console' },
+
+      -- log events should also go up to nginx
+      { 'handlers.loggers.nginx' },
     }
   },
 
   -- as requests come in, fire these events in order (corresponding to
   -- subscribers above)
   publishers = {
-    {"log"},
     {"input"},
     {"request"},
     {"output"}

@@ -18,9 +18,4 @@ context.output = {
 
 context.response.status = 404
 
-context.error = {
-  type = "warning",
-  message= "Page not found: "..context.request.url
-}
-
-context.log(context.error.message, context.error.type)
+context.log("Page not found: "..context.request.url, "warning")
