@@ -11,7 +11,8 @@ local config = {
       },
 
       request = {
-        { ['event.request.file'] = { file = 'handlers.home' } }
+        index = {{ ['event.request.file'] = { file = 'handlers.home' } }},
+        { ['event.request.file'] = { file = 'handlers.404' }},
       },
 
       output = {
@@ -25,6 +26,7 @@ local config = {
     },
 
     publishers = {
+      {"log"},
       {"input"},
       {"request"},
       {"output"}
