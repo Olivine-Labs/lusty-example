@@ -1,6 +1,6 @@
 package.path = './?.lua;./app/lusty/src/?.lua;'..package.path
 
-local Lusty = require 'init'
+local Lusty = require 'app.lusty.src.init'
 
 local config = {
     server = require 'server.nginx',
@@ -11,9 +11,7 @@ local config = {
       },
 
       request = {
-        { ['event.request.file'] = { file = 'handlers.root' } },
-
-        drew = {{ ['event.request.file'] = { file = 'handlers.drew' } }}
+        { ['event.request.file'] = { file = 'handlers.home' } }
       },
 
       output = {

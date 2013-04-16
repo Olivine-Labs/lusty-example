@@ -3,21 +3,52 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Lusty</title>
+    <title>lusty</title>
 
-    <meta name="description" content="The Fastest Web Framework">
+    <meta name="description" content="A rediculously fast, event-based webserver.">
     <meta name="author" content="Olivine Labs <projects@olivinelabs.com>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/css/app.css" rel="stylesheet" />
+
     {{> header }}
+
   </head>
 
   <body>
-    {{> content }}
+    <header class="navbar navbar-static-top">
+      <div class="container">
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="navbar-brand" href="http://lusty.io">lusty</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active"><a href="/">Docs</a></li>
+            <li><a href="https://github.com/Olivine-Labs/lusty">GitHub @ Olivine-Labs/lusty</a></li>
+            <li><a href="#"><strong>Install:</strong> luarocks install lusty</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
-    <script src="/static/js/bootstrap.min.js" rel="stylesheet"></script>
+    <div class="container">
+      {{> content }}
+    </div>
+
+    <footer class="container">
+      <p>
+        &copy; {{ year}} Olivine Labs.
+        <a href="http://opensource.org/licenses/MIT">MIT Licensed.</a>
+        <a href="https://github.com/Olivine-Labs/lusty">Get the code on GitHub.</a>
+      </p>
+    </footer>
+
     <script src="/static/js/jquery-1.9.1.min.js" rel="stylesheet"></script>
+    <script src="/static/js/bootstrap.min.js" rel="stylesheet"></script>
 
     {{> footer }}
   </body>
