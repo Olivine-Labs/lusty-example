@@ -1,42 +1,67 @@
+-- setup the path so we load files from the local directory
+-- also load from the lusty package (will go away once lusty is a luarock)
 package.path = './?.lua;./app/lusty/src/?.lua;'..package.path
 
+-- load lusty from the directory (will switch to luarock)
 local Lusty = require 'app.lusty.src.init'
 
 local config = {
-    server = require 'server.nginx',
+  -- we'll be using nginx bindings for our example
+  server = require 'server.nginx',
 
-    subscribers = {
-      input = {
-        { ['event.input.json'] = { json = require 'cjson' } }
-      },
-
-      request = {
-        index = {{ ['event.request.file'] = { file = 'handlers.home' } }},
-        { ['event.request.file'] = { file = 'handlers.404' }},
-      },
-
-      output = {
-        { ['output.mustache'] = { } },
-        { ['event.output.json'] = { json = require 'cjson' } }
-      },
-
-      log = {
-        { 'event.log.console' }
-      }
+  subscribers = {
+    input = {
+      -- decode json input if it exists in the body data
+      { ['event.input.json'] = { json = require 'cjson' } }
     },
 
-    publishers = {
-      {"log"},
-      {"input"},
-      {"request"},
-      {"output"}
+    request = {
+      -- / is routed to /index in nginx
+      -- the ./handlers/home.lua file is loaded when /index is requested
+      index = {{ ['event.request.file'] = { file = 'handlers.requests.home' } }},
+
+      -- 404 route and catch-all to redirect to 404
+      -- the ./handlers/404.lua file is loaded when /404 is requested
+      ["404"] = {{ ['event.request.file'] = { file = 'handlers.requests.404' } }},
+
+      -- the ./handlers/404.lua file is loaded if the request didn't match any
+      -- above routes (an entry with no key is a default, "root" handler)
+      { ['event.request.file'] = { file = 'handlers.requests.404' } }
     },
 
-    context = {
-      'log',
-      'store'
+    output = {
+      -- capture html requests as mustache handlers
+      { ['output.mustache'] = { } },
+
+      -- capture json requests to output handler data as json
+      { ['event.output.json'] = { json = require 'cjson' } }
+    },
+
+    log = {
+      -- log events should write to the console
+      { 'event.log.console' }
     }
-  }
+  },
 
+  -- as requests come in, fire these events in order (corresponding to
+  -- subscribers above)
+  publishers = {
+    {"log"},
+    {"input"},
+    {"request"},
+    {"output"}
+  },
+
+  -- bind context methods to the context object that is passed around, so you
+  -- can use things like context.log and context.store from within your handler
+  context = {
+    ['context.log'] = { level = "debug" },
+    ['context.store'] = {}
+  }
+}
+
+-- build a new lusty instance
 lusty = Lusty(config)
+
+-- return the lusty object
 return lusty
