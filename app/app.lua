@@ -15,7 +15,7 @@ local config = {
       },
 
       output = {
-        { ['event.output.html'] = { } },
+        { ['output.mustache'] = { } },
         { ['event.output.json'] = { json = require 'cjson' } }
       },
 

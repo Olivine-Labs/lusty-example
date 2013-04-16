@@ -1,16 +1,12 @@
-local lustache = require "lustache"
+context.template = "app/templates/layout.mustache"
 
-function readAll(file)
-  local f = io.open(file, "rb")
-  local content = f:read("*all")
-  f:close()
-  return content
-end
+context.partials = {
+  content = "app/templates/index.mustache"
+}
 
-local template = readAll("app/templates/layout.mustache")
-local page = readAll("app/templates/index.mustache")
-local content = lustache:render(template, {}, { content = page })
+context.output = {
+  result = "IT WORKS!"
+}
 
-context.output = content
 context.response.status = 200
 
