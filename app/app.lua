@@ -18,15 +18,16 @@ local config = {
     request = {
       -- / is routed to /index in nginx
       -- the ./handlers/home.lua file is loaded when /index is requested
-      index = {{ ['event.request.file'] = { file = 'handlers.requests.home' } }},
+      index = 'handlers.requests.home',
 
       -- 404 route and catch-all to redirect to 404
       -- the ./handlers/404.lua file is loaded when /404 is requested
-      ["404"] = {{ ['event.request.file'] = { file = 'handlers.requests.404' } }},
+      ["404"] = 'handlers.requests.404',
+      ["500"] = 'handlers.requests.500',
 
       -- the ./handlers/404.lua file is loaded if the request didn't match any
       -- above routes (an entry with no key is a default, "root" handler)
-      { ['event.request.file'] = { file = 'handlers.requests.404' } }
+      'handlers.requests.404'
     },
 
     output = {
