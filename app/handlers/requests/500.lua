@@ -14,7 +14,8 @@ return {
     }
 
     context.output = {
-      message = "Server error."
+      message = "Server error.",
+      code = 500
     }
 
     context.response.status = 500

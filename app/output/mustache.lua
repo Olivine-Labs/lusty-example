@@ -1,33 +1,39 @@
 local lustache = require "lustache"
+local cache = {}
 
-local readAll = function(file, cache)
+local readAll = function(file)
+  local f = io.open(file, "rb")
+  content = f:read("*all")
+  f:close()
+
+  return content
+end
+
+local getFile = function(file, cache)
   local content = cache[file]
 
   if not content then
-    local f = io.open(file, "rb")
-    content = f:read("*all")
-    f:close()
+    content = readAll(file)
+    content = lustache:compile(content)
     cache[file] = content
   end
 
   return content
 end
 
-local cache = {}
-
 return {
   handler = function(context)
     context.response.headers["content-type"] = "text/html"
 
     local partials = {}
-    local template = readAll(context.template, cache)
-
+    local template = getFile(context.template, cache)
 
     for i,v in pairs(context.partials) do
-      partials[i] = readAll(v, cache)
+      partials[i] = getFile(v, cache)
     end
 
-    local content = lustache:render(template, context.output, partials)
+    lustache.renderer.partial_cache = partials
+    local content = template(context.output)
 
     context.response.send(content)
   end,

@@ -4,7 +4,6 @@
 -- If this is a json request, `context.output` will be the json output.
 return {
   handler = function(context)
-
     context.template = "app/templates/layout.mustache"
 
     context.partials = {

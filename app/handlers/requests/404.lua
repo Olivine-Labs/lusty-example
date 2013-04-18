@@ -14,7 +14,8 @@ return {
     }
 
     context.output = {
-      message = "Page not found."
+      message = "Page not found.",
+      code = 400
     }
 
     context.response.status = 404

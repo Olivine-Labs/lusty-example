@@ -17,8 +17,8 @@ local config = {
 
     request = {
       -- / is routed to /index in nginx
-      -- the ./handlers/home.lua file is loaded when /index is requested
-      index = 'handlers.requests.home',
+      -- the ./handlers/index.lua file is loaded when /index is requested
+      index = 'handlers.requests.index',
 
       -- 404 route and catch-all to redirect to 404
       -- the ./handlers/404.lua file is loaded when /404 is requested
