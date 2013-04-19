@@ -3,16 +3,16 @@
 package.path = './?.lua;./app/lusty/src/?.lua;'..package.path
 
 -- load lusty from the directory (will switch to luarock)
-local Lusty = require 'app.lusty.src.init'
+local Lusty = require 'lusty'
 
 local config = {
   -- we'll be using nginx bindings for our example
-  server = require 'server.nginx',
+  server = require 'lusty-nginx.server',
 
   subscribers = {
     input = {
       -- decode json input if it exists in the body data
-      { ['event.input.json'] = { json = require 'cjson' } }
+      { ['lusty-json.input.json'] = { json = require 'cjson' } }
     },
 
     request = {
@@ -35,15 +35,15 @@ local config = {
       { ['output.mustache'] = { } },
 
       -- capture json requests to output handler data as json
-      { ['event.output.json'] = { json = require 'cjson' } }
+      { ['lusty-json.output.json'] = { json = require 'cjson' } }
     },
 
     log = {
       -- log events should write to the console
-      { 'event.log.console' },
+      { 'lusty-log-console.log.console' },
 
       -- log events should also go up to nginx
-      { 'handlers.loggers.nginx' },
+      { 'lusty-nginx.log' },
     }
   },
 
@@ -58,8 +58,7 @@ local config = {
   -- bind context methods to the context object that is passed around, so you
   -- can use things like context.log and context.store from within your handler
   context = {
-    ['context.log'] = { level = "debug" },
-    ['context.store'] = {}
+    ['lusty-log.context.log'] = { level = "debug" }
   }
 }
 

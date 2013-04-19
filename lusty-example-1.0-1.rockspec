@@ -16,7 +16,12 @@ dependencies = {
   "lua >= 5.1",
   "lua_cliargs >= 2.0",
   "busted >= 1.5.0",
-  "lustache >= 1.1-1"
+  "lustache >= 1.1-1",
+
+  "lusty-json >= 0.1-0",
+  "lusty-log >= 0.1-0",
+  "lusty-log-console >= 0.1-0",
+  "lusty-nginx >= 0.1-0"
 }
 build = {
   type = "builtin",
