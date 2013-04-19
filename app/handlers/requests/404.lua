@@ -7,10 +7,13 @@
 -- page.
 return {
   handler = function(context)
-    context.template = "app/templates/layout.mustache"
+    context.template = {
+      type = "mustache",
+      name = "app/templates/layout",
 
-    context.partials = {
-      content = "app/templates/error.mustache"
+      partials = {
+        content = "app/templates/error",
+      }
     }
 
     context.output = {

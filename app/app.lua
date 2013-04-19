@@ -30,9 +30,13 @@ local config = {
       'handlers.requests.404'
     },
 
+    render = {
+      { ['lusty-mustache.render.mustache'] = {} }
+    },
+
     output = {
       -- capture html requests as mustache handlers
-      { ['output.mustache'] = { } },
+      { ['lusty-html.output.html'] = { } },
 
       -- capture json requests to output handler data as json
       { ['lusty-json.output.json'] = { json = require 'cjson' } }
@@ -40,10 +44,10 @@ local config = {
 
     log = {
       -- log events should write to the console
-      { 'lusty-log-console.log.console' },
+      { ['lusty-log-console.log.console'] = {} },
 
       -- log events should also go up to nginx
-      { 'lusty-nginx.log' },
+      { ['lusty-nginx.log'] = {} },
     }
   },
 
@@ -52,6 +56,7 @@ local config = {
   publishers = {
     {"input"},
     {"request"},
+    {"render"},
     {"output"}
   },
 

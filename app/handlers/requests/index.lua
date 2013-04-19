@@ -4,10 +4,13 @@
 -- If this is a json request, `context.output` will be the json output.
 return {
   handler = function(context)
-    context.template = "app/templates/layout.mustache"
+    context.template = {
+      type = "mustache",
+      name = "app/templates/layout",
 
-    context.partials = {
-      content = "app/templates/index.mustache"
+      partials = {
+        content = "app/templates/index",
+      }
     }
 
     context.output = {
