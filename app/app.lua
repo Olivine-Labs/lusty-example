@@ -2,14 +2,11 @@
 -- also load from the lusty package (will go away once lusty is a luarock)
 package.path = './?.lua;./app/lusty/src/?.lua;'..package.path
 
--- load lusty from the directory (will switch to luarock)
+-- load and create an instance of lusty
 local lusty = require 'lusty'()
 
 --since we'll be using nginx bindings, add the nginx wrapper
 lusty = require 'lusty-nginx'(lusty)
-
---since we're opting to configure lusty using a table, bring in and use lusty-config
-local configure = require 'lusty-config'
 
 local config = {
   subscribers = {
@@ -63,6 +60,8 @@ local config = {
   }
 }
 
+--since we're opting to configure lusty using a table, bring in and use lusty-config
+local configure = require 'lusty-config'
 configure(lusty, config)
 
 -- return the lusty object
