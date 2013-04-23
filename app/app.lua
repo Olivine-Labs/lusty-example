@@ -3,12 +3,15 @@
 package.path = './?.lua;./app/lusty/src/?.lua;'..package.path
 
 -- load lusty from the directory (will switch to luarock)
-local Lusty = require 'lusty'
+local lusty = require 'lusty'()
+
+--since we'll be using nginx bindings, add the nginx wrapper
+lusty = require 'lusty-nginx'(lusty)
+
+--since we're opting to configure lusty using a table, bring in and use lusty-config
+local configure = require 'lusty-config'
 
 local config = {
-  -- we'll be using nginx bindings for our example
-  server = require 'lusty-nginx.server',
-
   subscribers = {
     input = {
       -- decode json input if it exists in the body data
@@ -67,8 +70,7 @@ local config = {
   }
 }
 
--- build a new lusty instance
-lusty = Lusty(config)
+configure(lusty, config)
 
 -- return the lusty object
 return lusty
