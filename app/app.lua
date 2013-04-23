@@ -62,7 +62,7 @@ local config = {
 
 --since we're opting to configure lusty using a table, bring in and use lusty-config
 local configure = require 'lusty-config'
-configure(server, config)
+configure(lusty, config)
 
 -- return the lusty object
 return server
