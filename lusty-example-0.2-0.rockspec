@@ -1,5 +1,5 @@
 package = "lusty-example"
-version = "1.0-1"
+version = "0.2-0"
 source = {
   url = "",
   dir = "."
@@ -18,6 +18,7 @@ dependencies = {
   "busted >= 1.5.0",
   "lustache >= 1.1-1",
 
+  "lusty >= 0.2-0",
   "lusty-json >= 0.1-0",
   "lusty-log >= 0.1-0",
   "lusty-log-console >= 0.1-0",
