@@ -6,7 +6,7 @@ package.path = './?.lua;'..package.path
 local lusty = require 'lusty'()
 
 --since we'll be using nginx bindings, add the nginx wrapper
-server = require 'lusty-nginx.server'(lusty)
+server = require 'lusty-nginx'(lusty)
 
 local config = {
   subscribers = {
