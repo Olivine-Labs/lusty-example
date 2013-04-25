@@ -14,7 +14,7 @@ return {
     }
 
     context.output = {
-      result = "IT WORKS!"
+      result = "Hello, from Lusty!"
     }
 
     context.response.status = 200
