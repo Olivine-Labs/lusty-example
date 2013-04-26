@@ -1,6 +1,3 @@
--- setup the path so we load files from the local directory
-package.path = './?.lua;'..package.path
-
 -- load and create an instance of lusty
 local lusty = require 'lusty'()
 
@@ -15,3 +12,4 @@ configure(lusty, config)
 --since we'll be using nginx bindings, add the nginx wrapper
 local server = require 'lusty-nginx'
 return server(lusty)
+
