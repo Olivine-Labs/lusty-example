@@ -1,6 +1,3 @@
---setup the path so we load files from the local directory
-package.path = './?.lua;'..package.path
-
 local server    = require 'lusty-nginx' --load my chosen server module
 local configure = require 'lusty-config'--load my chosen configurator
 local config    = require 'config'      --load config table
