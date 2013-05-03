@@ -5,24 +5,22 @@
 --
 -- We'll also set the status to 500 and call the logger, since this is an error
 -- page.
-return {
-  handler = function(context)
-    context.template = {
-      type = "mustache",
-      name = "app/templates/layout",
 
-      partials = {
-        content = "app/templates/error",
-      }
-    }
+context.log("Page not found: "..context.request.url, "error")
 
-    context.output = {
-      message = "Server error.",
-      code = 500
-    }
+context.template = {
+  type = "mustache",
+  name = "app/templates/layout",
 
-    context.response.status = 500
-
-    context.log("Server error on: "..context.request.url, "error")
-  end
+  partials = {
+    content = "app/templates/error",
+  }
 }
+
+context.output = {
+  message = "Page not found.",
+  code = 500
+}
+
+context.response.status = 500
+

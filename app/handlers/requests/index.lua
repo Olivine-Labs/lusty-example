@@ -2,22 +2,22 @@
 -- some partials and some data.
 --
 -- If this is a json request, `context.output` will be the json output.
-return {
-  handler = function(context)
-    context.template = {
-      type = "mustache",
-      name = "app/templates/layout",
 
-      partials = {
-        content = "app/templates/index",
-      }
-    }
+context.log("Page not found: "..context.request.url, "error")
 
-    context.output = {
-      result = "Hello, from Lusty!"
-    }
+context.template = {
+  type = "mustache",
+  name = "app/templates/layout",
 
-    context.response.status = 200
-  end
+  partials = {
+    content = "app/templates/index",
+  }
 }
+
+context.output = {
+  result = "Hello from Lusty"
+}
+
+context.response.status = 200
+
 

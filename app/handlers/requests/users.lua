@@ -7,7 +7,7 @@ context.template = {
   }
 }
 
-if userId == '' then
+if not userId or userId == '' then
   context.output = {
     result = "This might show a list of users"
   }

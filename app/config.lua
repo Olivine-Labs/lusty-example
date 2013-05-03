@@ -9,17 +9,17 @@ return {
 
     -- / is routed to /index in nginx
     -- ./handlers/requests/index.lua is loaded when /index is requested
-    ['request:index'] = { 'handlers.requests.index' },
-    ['request:404'] = { 'handlers.requests.404' },
-    ['request:500'] = { 'handlers.requests.500' },
-    ['request:users'] = { ['lusty-request-pattern.request.pattern'] = {
+    ['request'] = { ['lusty-request-pattern.request.pattern'] = {
       patterns = {
-        { ['{userId}/profile']  = 'handlers.requests.users.profile' },
-        { ['{userId}']          = 'handlers.requests.users' }
+        { ['index']                   = 'handlers.requests.index' },
+        { ['404']                     = 'handlers.requests.404' },
+        { ['500']                     = 'handlers.requests.505' },
+        { ['users']                   = 'handlers.requests.users' },
+        { ['users/{userId}']          = 'handlers.requests.users' },
+        { ['users/{userId}/profile']  = 'handlers.requests.users.profile' },
+        { ['{whatever}']              = 'handlers.requests.404' }
       }
     }},
-    -- default to 404 if none of the above request routes match
-    ['request'] = { 'handlers.requests.404' },
 
     -- add mustache parsing to the render events
     ['render'] = { 'lusty-mustache.render.mustache' },
