@@ -12,7 +12,12 @@ return {
     ['request:index'] = { 'handlers.requests.index' },
     ['request:404'] = { 'handlers.requests.404' },
     ['request:500'] = { 'handlers.requests.500' },
-
+    ['request:users'] = { ['lusty-request-pattern.request.pattern'] = {
+      patterns = {
+        { ['{userId}/profile']  = 'handlers.requests.users.profile' },
+        { ['{userId}']          = 'handlers.requests.users' }
+      }
+    }},
     -- default to 404 if none of the above request routes match
     ['request'] = { 'handlers.requests.404' },
 
