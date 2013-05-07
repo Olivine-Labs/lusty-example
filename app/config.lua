@@ -51,6 +51,11 @@ return {
   -- bind context methods to the context object that is passed around, so you
   -- can use things like context.log and context.store from within your handler
   context = {
-    ['lusty-log.context.log'] = { level = 'debug' }
+    ['lusty-log.context.log'] = { level = 'debug' },
+
+    ['lusty-statsd.context.statsd'] = {
+      host = "127.0.0.1",
+      namespace= "lusty-example"
+    }
   }
 }
