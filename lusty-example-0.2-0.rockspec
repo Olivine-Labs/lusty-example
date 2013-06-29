@@ -24,7 +24,10 @@ dependencies = {
   "lusty-log-console >= 0.1-0",
   "lusty-nginx >= 0.1-0",
   "lusty-html >= 0.1-0",
-  "lusty-mustache >= 0.1-0"
+  "lusty-mustache >= 0.1-0",
+  "lusty-request-pattern >= 0.1-0",
+  "lusty-statsd >= 0.1-0"
+
 }
 build = {
   type = "builtin",
