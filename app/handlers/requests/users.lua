@@ -8,13 +8,13 @@ context.template = {
 }
 
 if not userId or userId == '' then
-  context.statsd:increment("users.get", 1)
+  --context.statsd:increment("users.get", 1)
 
   context.output = {
     result = "This might show a list of users"
   }
 else
-  context.statsd:increment("user.get", 1)
+  --context.statsd:increment("user.get", 1)
 
   context.output = {
     result = "This might show the user with id "..userId

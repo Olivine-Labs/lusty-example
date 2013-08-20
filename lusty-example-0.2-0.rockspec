@@ -19,14 +19,15 @@ dependencies = {
   "lustache >= 1.1-1",
 
   "lusty >= 0.2-0",
-  "lusty-json >= 0.1-0",
+  "lusty-config >= 0.2-0",
+  "lusty-json >= 0.3-0",
   "lusty-log >= 0.1-0",
   "lusty-log-console >= 0.1-0",
   "lusty-nginx >= 0.1-0",
   "lusty-html >= 0.1-0",
   "lusty-mustache >= 0.1-0",
   "lusty-request-pattern >= 0.1-0",
-  "lusty-statsd >= 0.1-0"
+  --"lusty-statsd >= 0.1-0"
 
 }
 build = {
