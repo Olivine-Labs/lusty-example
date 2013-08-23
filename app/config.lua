@@ -22,7 +22,7 @@ return {
     }},
 
     -- add mustache parsing to the render events
-    ['render'] = { 'lusty-mustache.render.mustache' },
+    ['render'] = { ['lusty-mustache.render.mustache'] = {} },
 
     -- capture html requests as mustache handlers, and
     -- capture json requests to output handler data as json

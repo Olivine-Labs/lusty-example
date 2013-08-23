@@ -21,6 +21,7 @@ dependencies = {
   "lusty >= 0.2-0",
   "lusty-config >= 0.2-0",
   "lusty-json >= 0.3-0",
+  "lua-cjson >= 2.1-0",
   "lusty-log >= 0.1-0",
   "lusty-log-console >= 0.1-0",
   "lusty-nginx >= 0.1-0",
