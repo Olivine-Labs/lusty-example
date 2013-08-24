@@ -2,7 +2,6 @@
 -- some partials and some data.
 --
 -- If this is a json request, `context.output` will be the json output.
-error("haha")
 context.template = {
   type = "mustache",
   name = "app/templates/layout",
