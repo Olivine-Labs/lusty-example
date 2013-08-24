@@ -13,7 +13,7 @@ return {
       patterns = {
         { ['index']                   = 'handlers.requests.index' },
         { ['404']                     = 'handlers.requests.404' },
-        { ['500']                     = 'handlers.requests.505' },
+        { ['500']                     = 'handlers.requests.500' },
         { ['users/{userId}/profile']  = 'handlers.requests.users.profile' },
         { ['users/{userId}']          = 'handlers.requests.users' },
         { ['users']                   = 'handlers.requests.users' },
