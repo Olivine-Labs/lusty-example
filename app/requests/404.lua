@@ -17,9 +17,8 @@ context.template = {
   }
 }
 
-context.output = {
+context.output.error = {{
   message = "Page not found.",
-  code = 404
-}
-
+}}
+context.output.code = 404
 context.response.status = 404

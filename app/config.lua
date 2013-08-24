@@ -1,25 +1,37 @@
+local json = require 'dkjson'
+
 return {
   subscribers = {
     ['input'] = {
       -- decode json input if it exists in the body data.
       -- you can provide -- options to the handler as a table.
       -- in this case, we are passing in a json encoding/decoding function.
-      ['lusty-json.input.json'] = { json = require 'cjson' }
+      ['lusty-json.input.json'] = { json = json }
     },
 
     -- / is routed to /index in nginx
     -- ./handlers/requests/index.lua is loaded when /index is requested
     ['request'] = { ['lusty-request-pattern.request.pattern'] = {
       patterns = {
-        { ['index']                   = 'handlers.requests.index' },
-        { ['404']                     = 'handlers.requests.404' },
-        { ['500']                     = 'handlers.requests.500' },
-        { ['users/{userId}/profile']  = 'handlers.requests.users.profile' },
-        { ['users/{userId}']          = 'handlers.requests.users' },
-        { ['users']                   = 'handlers.requests.users' },
-        { ['{whatever}']              = 'handlers.requests.404' }
+        { ['index']                   = 'requests.index' },
+        { ['users/{userId}/profile']  = 'requests.users.profile' },
+        { ['users[/]?{userId}']       = 'requests.users' },
       }
     }},
+
+    ['request:404'] = {['lusty-request-file.request.file'] = 'requests.404'},
+    ['request:500'] = {['lusty-request-file.request.file'] = 'requests.500'},
+
+    ['error'] = {
+      ['lusty-error-status.error.status'] = {
+        prefix = {{'input'}},
+        status = {
+          [500] = {{'request:500'}},
+          [404] = {'request:404'}
+        },
+        suffix = {{'render'}, {'output'}}
+      }
+    },
 
     -- add mustache parsing to the render events
     ['render'] = { ['lusty-mustache.render.mustache'] = {} },
@@ -28,7 +40,7 @@ return {
     -- capture json requests to output handler data as json
     ['output'] = {
       'lusty-html.output.html',
-      ['lusty-json.output.json'] = { json = require 'cjson' }
+      ['lusty-json.output.json'] = { json = json }
     },
 
     -- log events should write to the console
@@ -45,6 +57,7 @@ return {
     {'input'},
     {'request'},
     {'render'},
+    {'error'},
     {'output'}
   },
 

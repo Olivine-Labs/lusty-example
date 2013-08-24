@@ -1,9 +1,14 @@
 <div class="jumbotron">
   <h1>{{code}}</h1>
+  {{#error}}
+  <h3><b>Message:</b> {{message}}</h3>
 
-  <p>
-    {{message}}
-  </p>
+  <table class="table table-striped table-condensed stack-trace">
+    {{#trace}}
+    <tr><td>{{.}}</td></tr>
+    {{/trace}}
+  </table>
+  {{/error}}
 
   <p>
     <a href="/">documentation</a>
