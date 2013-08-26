@@ -5,7 +5,6 @@
 --
 -- We'll also set the status to 500 and call the logger, since this is an error
 -- page.
-context.log("Server Error: "..context.request.url, "error")
 
 context.template = {
   type = "mustache",
@@ -19,6 +18,7 @@ context.template = {
 context.output.error = {}
 
 for _, error in pairs(context.error) do
+
   --Build stack trace
   local trace = {}
   local headerRemoved = false
@@ -37,6 +37,8 @@ for _, error in pairs(context.error) do
   if type(message) == "table" then
     message = message[1]
   end
+
+  context.log("Server Error: "..tostring(error.message).." at "..tostring(context.request.url)..". "..tostring(error.trace), "error")
 
   context.output.error[#context.output.error+1] = {
     message = message,
