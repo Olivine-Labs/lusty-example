@@ -46,7 +46,7 @@ return {
     -- log events should write to the console
     -- log events should also go up to nginx
     ['log'] = {
-      'lusty-log-console.log.console',
+      --'lusty-log-console.log.console',
       'lusty-nginx.log'
     }
   },
