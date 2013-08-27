@@ -28,6 +28,7 @@ dependencies = {
   "lusty-html >= 0.1-0",
   "lusty-mustache >= 0.1-0",
   "lusty-request-pattern >= 0.1-0",
+  "lusty-request-file >- 0.3-0",
   "lusty-error-status >= 0.2-0",
   --"lusty-statsd >= 0.1-0"
 
