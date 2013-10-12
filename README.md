@@ -37,8 +37,12 @@ Clone / fork repository
 Install dependencies (`luarocks make`)
 
 Start openresty/nginx, pointing at conf/nginx.conf:
-`openresty -p `pwd`/ -c conf/nginx.conf` (depending on how you installed
-openresty, this may be `nginx` or something else.)
+
+```
+openresty -p `pwd`/ -c conf/nginx.conf
+```
+
+(depending on how you installed openresty, this may be `nginx` instead of `openresty`)
 
 Visit localhost:8080 (try making ajax requests, too:
 `curl http://localhost:8080 -H "Accept: application/json"`)
