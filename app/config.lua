@@ -13,14 +13,13 @@ return {
     -- ./handlers/requests/index.lua is loaded when /index is requested
     ['request'] = { ['lusty-request-pattern.request.pattern'] = {
       patterns = {
-        { ['index']                   = 'requests.index' },
-        { ['users/{userId}/profile']  = 'requests.users.profile' },
-        { ['users[/]?{userId}']       = 'requests.users' },
+        { ['index']           = 'requests.index' },
+        { ['users/{userId}']  = 'requests.users.profile' },
+        { ['users[/]?']       = 'requests.users' },
+        { ['404']             = 'requests.404' },
+        { ['500']             = 'requests.500' },
       }
     }},
-
-    ['request:404'] = {['lusty-request-file.request.file'] = 'requests.404'},
-    ['request:500'] = {['lusty-request-file.request.file'] = 'requests.500'},
 
     ['error'] = {
       ['lusty-error-status.error.status'] = {

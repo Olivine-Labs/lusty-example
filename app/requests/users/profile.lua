@@ -1,3 +1,8 @@
+local users = {
+  { id = 1, name = "Jack" },
+  { id = 2, name = "Drew" }
+}
+
 context.template = {
   type = "mustache",
   name = "app/templates/layout",
@@ -8,7 +13,8 @@ context.template = {
 }
 
 context.output = {
-  result = "This might show a users' profile for user with id "..userId
+  user = users[tonumber(userId)],
+  id = userId
 }
 
 context.response.status = 200

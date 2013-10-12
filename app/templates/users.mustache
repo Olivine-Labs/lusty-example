@@ -1,16 +1,10 @@
 <div class="jumbotron">
-  <h1>lusty</h1>
+  <h1>Users</h1>
 
-  <p>
-    A ridiculously fast event router made for building web-based APIs.
-  </p>
-
-  <p>
-    <a class="btn btn-large btn-primary" href="https://github.com/Olivine-Labs/lusty">lusty @ GitHub</a>
-  </p>
+  <ul>
+    {{#users}}
+  <li><a href="/users/{{id}}">{{name}}</a></li>
+    {{/users}}
+  </ul>
 </div>
 
-<div class="alert alert-block">
-  <h4>And now for a special message:</h4>
-  {{result}}
-</div>
