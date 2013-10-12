@@ -26,6 +26,8 @@ rocks_servers = {
 
 Install [openresty](http://openresty.org/#Installation)
 
+(Note: on OSX, you can `brew install https://raw.github.com/marcqualie/homebrew-nginx/master/openresty.rb`)
+
 Optional: symlink `nginx` to the nginx provided by openresty
 
 #### Lua Environment
